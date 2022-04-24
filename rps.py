@@ -13,12 +13,11 @@ def print_pause(message_display):
 def gen_message():
     # the first line messages printed to the screen
     print_pause("Let's play Rock, Paper & Scissors. Go!")
-    print_pause("This game consists of 5 rounds")
+    print_pause("This game allows a round of 5")
 
 
 class Player:
     # moves list to be selected
-
     moves = ['rock', 'paper', 'scissors']
 
     def __init__(self):
@@ -61,8 +60,6 @@ class Human_player(Player):
                 return human_input
             else:
                 print_pause("Wrong input, Try Again/n")
-                human_input = input("Rock, Paper, scissors?")
-                return human_input
 
     def learn(self, my_move, their_move):
         pass
@@ -147,22 +144,26 @@ class Game:
         # function to determine the overall winner and restart the game
         if self.p1_score > self.p2_score:
             print_pause('******* PLAYER ONE WINS THE GAME ******')
+        elif self.p1_score < self.p2_score:
+            print_pause('******* PLAYER TWO WINS THE GAME ******')
         elif self.p1_score == self.p2_score:
             print_pause('******* THE GAME ENDED IN TIE ******')
         self.continue_game()
 
     def continue_game(self):
         # function to repeat or quit the game
-        while True:
-            cont_game = input('Play Again or Quit? >> ')
-            if "play" in cont_game.lower():
-                self.p1_score = 0
-                self.p2_score = 0
-                game.play_game()
+        cont_game = input(
+            'Enter Play to play again or'
+            ' Quit to quit the game? >> '
+        )
+        if "play" in cont_game.lower():
+            self.p1_score = 0
+            self.p2_score = 0
+            game.play_game()
 
-            elif "quit" in cont_game.lower():
-                print_pause("Game over!")
-                exit(0)
+        elif "quit" in cont_game.lower():
+            print_pause("Game over!")
+            exit(0)
 
 
 if __name__ == '__main__':
